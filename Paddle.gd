@@ -23,11 +23,17 @@ var is_player: bool
 var min_position: Vector2
 var max_position: Vector2
 
+var vector: Vector2
+
 func resize_rect():
 	if rect == null || collision == null: return
 	rect.size = size
 	collision.shape.size = size
 	collision.position = Vector2(size.x / 2, size.y / 2)
+
+
+func get_vector():
+	return vector
 
 
 func _ready():
@@ -46,12 +52,19 @@ func _ready():
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
 
-	var vector = Vector2()
+	vector = Vector2()
 	if is_player && Input.is_action_pressed("move_up"):
-		vector.y -= movement_speed * delta
+		vector.y -= movement_speed
 	if is_player && Input.is_action_pressed("move_down"):
-		vector.y += movement_speed * delta
-	move_and_collide(vector)
+		vector.y += movement_speed
+	if !is_player:
+		var ball_pos = get_node("../Ball").position
+		var ball_size = get_node("../Ball").size
+		if ball_pos.y + ball_size.y / 2 < position.y + size.y / 2 - movement_speed * delta:
+			vector.y -= movement_speed
+		if ball_pos.y + ball_size.y / 2 > position.y + size.y / 2 + movement_speed * delta:
+			vector.y += movement_speed
+	move_and_collide(vector * delta)
 	
 	var viewport_size = get_viewport_rect().size
 	position = position.clamp(min_position, max_position)
