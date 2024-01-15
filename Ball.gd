@@ -1,6 +1,9 @@
 @tool
 extends CharacterBody2D
 
+enum Side {LEFT, RIGHT}
+signal side_hit(side: Side)
+
 @onready
 var collision := $CollisionShape2D
 
@@ -31,18 +34,26 @@ func resize_rect():
 	collision.position = Vector2(size.x / 2, size.y / 2)
 
 
+func set_minimum_speed():
+	if absf(movement_vec.x) < 0.2:
+		var sign: float
+		if movement_vec.x < 0: sign = -1.0
+		else: sign = 1.0
+		movement_vec.x = 0.25 * sign
+		movement_vec = movement_vec.normalized()
+
+
 func _ready():
 	if Engine.is_editor_hint(): return
 	
 	var viewport := get_viewport_rect()
 	min_position = viewport.position
-	var max_x = viewport.position.x + viewport.size.x - size.x
-	var max_y = viewport.position.y + viewport.size.y - size.y
-	max_position = Vector2(max_x, max_y)
+	max_position = viewport.position + viewport.size - Vector2(size)
 	resize_rect()
 	
 	position.y = viewport.position.y + viewport.size.y / 2 - size.y / 2
 	movement_vec = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	set_minimum_speed()
 
 
 func _physics_process(delta):
@@ -65,16 +76,14 @@ func _physics_process(delta):
 				additional = Vector2(0, 0.7)
 			
 		movement_vec = (movement_vec.bounce(collision.get_normal()) + additional).normalized()
-		if absf(movement_vec.x) < 0.2:
-			var sign: float
-			if movement_vec.x < 0: sign = -1.0
-			else: sign = 1.0
-			movement_vec.x = 0.25 * sign
-			movement_vec = movement_vec.normalized()
+		set_minimum_speed()
 	
 	position = position.clamp(min_position, max_position)
 	if position.y == min_position.y || position.y == max_position.y:
 		movement_vec.y *= -1
 	if position.x == min_position.x || position.x == max_position.x:
+		if position.x == min_position.x:
+			side_hit.emit(Side.LEFT)
+		else: side_hit.emit(Side.RIGHT)
 		movement_vec.x *= -1
 

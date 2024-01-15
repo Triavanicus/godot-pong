@@ -1,63 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce4bifuaddccv"]
+[gd_scene load_steps=4 format=3 uid="uid://ce4bifuaddccv"]
 
-[ext_resource type="Script" path="res://Paddle.gd" id="1_1jnv5"]
-[ext_resource type="Script" path="res://Ball.gd" id="2_0ng3m"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt5nj"]
-resource_local_to_scene = true
-size = Vector2(10, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a50mq"]
-resource_local_to_scene = true
-size = Vector2(10, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r17bo"]
+[ext_resource type="Script" path="res://game.gd" id="1_kvanu"]
+[ext_resource type="PackedScene" uid="uid://dl1jr005hcf8i" path="res://paddle.tscn" id="2_o5bik"]
+[ext_resource type="PackedScene" uid="uid://b3os6thr86xua" path="res://ball.tscn" id="3_owmlq"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_kvanu")
 
-[node name="Paddle" type="CharacterBody2D" parent="."]
-position = Vector2(25, 200)
-motion_mode = 1
-script = ExtResource("1_1jnv5")
-size = Vector2i(10, 50)
-is_player = true
+[node name="Paddle" parent="." instance=ExtResource("2_o5bik")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
-position = Vector2(5, 25)
-shape = SubResource("RectangleShape2D_rt5nj")
-
-[node name="ColorRect" type="ColorRect" parent="Paddle"]
-offset_right = 10.0
-offset_bottom = 50.0
-
-[node name="Paddle2" type="CharacterBody2D" parent="."]
+[node name="Paddle3" parent="." instance=ExtResource("2_o5bik")]
 position = Vector2(965, 200)
-motion_mode = 1
-script = ExtResource("1_1jnv5")
-movement_speed = 250
-size = Vector2i(10, 50)
+is_player = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2"]
-position = Vector2(5, 25)
-shape = SubResource("RectangleShape2D_a50mq")
-
-[node name="ColorRect" type="ColorRect" parent="Paddle2"]
-offset_right = 10.0
-offset_bottom = 50.0
-
-[node name="Ball" type="CharacterBody2D" parent="."]
-position = Vector2(495, 200)
-script = ExtResource("2_0ng3m")
-movement_speed = 300
-size = Vector2i(10, 10)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-position = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_r17bo")
-
-[node name="ColorRect" type="ColorRect" parent="Ball"]
-offset_right = 10.0
-offset_bottom = 10.0
+[node name="Ball" parent="." instance=ExtResource("3_owmlq")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[connection signal="side_hit" from="Ball" to="." method="_on_ball_side_hit"]
