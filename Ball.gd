@@ -10,6 +10,9 @@ var collision := $CollisionShape2D
 @onready
 var rect := $ColorRect
 
+@onready
+var audio := $AudioStreamPlayer
+
 @export_range(100, 1000)
 var movement_speed = 500
 
@@ -56,11 +59,21 @@ func _ready():
 	set_minimum_speed()
 
 
+func play_sound():
+	var pitches = [1.0, 0.6, 0.8, 1.2, 1.5]
+	var new_pitch = pitches[randi() % len(pitches)]
+	while new_pitch == audio.pitch_scale:
+		new_pitch = pitches[randi() % len(pitches)]
+	audio.pitch_scale = new_pitch
+	audio.play()
+
+
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
 
 	var collision = move_and_collide(movement_vec * movement_speed * delta)
 	if collision:
+		play_sound()
 		var additional:Vector2
 		if collision.get_collider().has_method("get_vector"):
 			var vec = collision.get_collider().get_vector().normalized()
@@ -81,7 +94,9 @@ func _physics_process(delta):
 	position = position.clamp(min_position, max_position)
 	if position.y == min_position.y || position.y == max_position.y:
 		movement_vec.y *= -1
+		play_sound()
 	if position.x == min_position.x || position.x == max_position.x:
+		play_sound()
 		if position.x == min_position.x:
 			side_hit.emit(Side.LEFT)
 		else: side_hit.emit(Side.RIGHT)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3os6thr86xua"]
+[gd_scene load_steps=4 format=3 uid="uid://b3os6thr86xua"]
 
 [ext_resource type="Script" path="res://Ball.gd" id="1_v3e1h"]
+[ext_resource type="AudioStream" uid="uid://t71ixgvg37mi" path="res://ping.wav" id="2_amgmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r17bo"]
 size = Vector2(10, 10)
@@ -18,3 +19,7 @@ shape = SubResource("RectangleShape2D_r17bo")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 10.0
 offset_bottom = 10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_amgmx")
+pitch_scale = 1.47
