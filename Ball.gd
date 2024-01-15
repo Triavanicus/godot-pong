@@ -10,15 +10,15 @@ var rect := $ColorRect
 @export_range(100, 1000)
 var movement_speed = 500
 
+var dir_x = 1
+var dir_y = 1
+
 @export
 var size: Vector2i:
 	get: return size
 	set(value):
 		size = value
 		resize_rect()
-
-@export
-var is_player: bool
 
 var min_position: Vector2
 var max_position: Vector2
@@ -28,6 +28,11 @@ func resize_rect():
 	rect.size = size
 	collision.shape.size = size
 	collision.position = Vector2(size.x / 2, size.y / 2)
+	
+	if randi_range(0, 1) == 0: dir_x = -1
+	else: dir_x = 1
+	if randi_range(0, 1) == 0: dir_y = -1
+	else: dir_y = 1
 
 
 func _ready():
@@ -46,13 +51,18 @@ func _ready():
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
 
-	var vector = Vector2()
-	if is_player && Input.is_action_pressed("move_up"):
-		vector.y -= movement_speed * delta
-	if is_player && Input.is_action_pressed("move_down"):
-		vector.y += movement_speed * delta
-	move_and_collide(vector)
+	var vector = Vector2(dir_x, dir_y) * movement_speed * delta
+	var collision = move_and_collide(vector)
+	if collision:
+		var normal = collision.get_normal()
+		if normal.y != 0:
+			dir_y = normal.y
+		if normal.x != 0:
+			dir_x = normal.x
 	
-	var viewport_size = get_viewport_rect().size
 	position = position.clamp(min_position, max_position)
+	if position.y == min_position.y || position.y == max_position.y:
+		dir_y *= -1
+	if position.x == min_position.x || position.x == max_position.x:
+		dir_x *= -1
 
