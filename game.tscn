@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce4bifuaddccv"]
+
+[ext_resource type="Script" path="res://Paddle.gd" id="1_1jnv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm2yk"]
+size = Vector2(10, 50)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Paddle" type="CharacterBody2D" parent="."]
+position = Vector2(25, 200)
+motion_mode = 1
+script = ExtResource("1_1jnv5")
+size = Vector2i(10, 50)
+is_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+position = Vector2(5, 25)
+shape = SubResource("RectangleShape2D_fm2yk")
+
+[node name="ColorRect" type="ColorRect" parent="Paddle"]
+offset_right = 10.0
+offset_bottom = 50.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="property_list_changed" from="Paddle/CollisionShape2D" to="Paddle" method="_on_collision_shape_2d_property_list_changed"]
