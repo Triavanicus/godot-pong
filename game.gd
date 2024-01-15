@@ -5,6 +5,11 @@ var ball: PackedScene = load("res://ball.tscn")
 var left_wins = 0
 var right_wins = 0
 
+@onready
+var left_score := $Container/CenterContainer/LeftScore
+@onready
+var right_score := $Container/CenterContainer2/RightScore
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,10 +21,10 @@ func _process(delta):
 
 
 func _on_ball_side_hit(side):
-	if side == 0: left_wins += 1
+	if side == 1: left_wins += 1
 	else: right_wins += 1
-	print("Left: ", left_wins)
-	print("Right: ", right_wins)
+	left_score.text = str(left_wins)
+	right_score.text = str(right_wins)
 	
 	$Ball.queue_free()
 	$Ball.name = "DeadBall"
