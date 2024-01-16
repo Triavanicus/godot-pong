@@ -1,6 +1,7 @@
 extends Node2D
 
 var ball: PackedScene = load("res://scenes/ball.tscn")
+var main_menu: PackedScene = load("res://scenes/MainMenu.tscn")
 
 var left_wins = 0
 var right_wins = 0
@@ -17,7 +18,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene_to_packed(main_menu)
 
 
 func _on_ball_side_hit(side):
