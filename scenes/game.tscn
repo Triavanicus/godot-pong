@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ce4bifuaddccv"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_kvanu"]
-[ext_resource type="PackedScene" uid="uid://dl1jr005hcf8i" path="res://paddle.tscn" id="2_o5bik"]
-[ext_resource type="PackedScene" uid="uid://b3os6thr86xua" path="res://ball.tscn" id="3_owmlq"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_xvbgb"]
+[ext_resource type="PackedScene" uid="uid://dl1jr005hcf8i" path="res://scenes/paddle.tscn" id="2_7l8w4"]
+[ext_resource type="PackedScene" uid="uid://b3os6thr86xua" path="res://scenes/ball.tscn" id="3_aa1e0"]
 
 [sub_resource type="SystemFont" id="SystemFont_y5fnd"]
 
@@ -10,15 +10,15 @@
 default_font = SubResource("SystemFont_y5fnd")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_kvanu")
+script = ExtResource("1_xvbgb")
 
-[node name="Paddle" parent="." instance=ExtResource("2_o5bik")]
+[node name="Paddle" parent="." instance=ExtResource("2_7l8w4")]
 
-[node name="Paddle3" parent="." instance=ExtResource("2_o5bik")]
+[node name="Paddle3" parent="." instance=ExtResource("2_7l8w4")]
 position = Vector2(965, 200)
 is_player = false
 
-[node name="Ball" parent="." instance=ExtResource("3_owmlq")]
+[node name="Ball" parent="." instance=ExtResource("3_aa1e0")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

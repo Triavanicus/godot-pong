@@ -1,6 +1,6 @@
 extends Node2D
 
-var ball: PackedScene = load("res://ball.tscn")
+var ball: PackedScene = load("res://scenes/ball.tscn")
 
 var left_wins = 0
 var right_wins = 0

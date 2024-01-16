@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl1jr005hcf8i"]
 
-[ext_resource type="Script" path="res://Paddle.gd" id="1_x3oad"]
+[ext_resource type="Script" path="res://scripts/Paddle.gd" id="1_x3oad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt5nj"]
 resource_local_to_scene = true

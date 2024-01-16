@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://t71ixgvg37mi"
-path="res://.godot/imported/ping.wav-9aba9f1fa3ff032c19560367de737062.sample"
+path="res://.godot/imported/ping.wav-36d6c95bc11e5b3d905aea2b9184108a.sample"
 
 [deps]
 
-source_file="res://ping.wav"
-dest_files=["res://.godot/imported/ping.wav-9aba9f1fa3ff032c19560367de737062.sample"]
+source_file="res://resources/ping.wav"
+dest_files=["res://.godot/imported/ping.wav-36d6c95bc11e5b3d905aea2b9184108a.sample"]
 
 [params]
 
