@@ -20,6 +20,11 @@ var size: Vector2i:
 @export
 var is_player: bool
 
+enum Player {LEFT, RIGHT}
+
+@export
+var player: Player
+
 var min_position: Vector2
 var max_position: Vector2
 
@@ -53,10 +58,17 @@ func _physics_process(delta):
 	if Engine.is_editor_hint(): return
 
 	vector = Vector2()
-	if is_player && Input.is_action_pressed("move_up"):
-		vector.y -= movement_speed
-	if is_player && Input.is_action_pressed("move_down"):
-		vector.y += movement_speed
+	if is_player:
+		if player == Player.LEFT:
+			if Input.is_action_pressed("move_up"):
+				vector.y -= movement_speed
+			if Input.is_action_pressed("move_down"):
+				vector.y += movement_speed
+		if player == Player.RIGHT:
+			if Input.is_action_pressed("right_move_up"):
+				vector.y -= movement_speed
+			if Input.is_action_pressed("right_move_down"):
+				vector.y += movement_speed
 	if !is_player:
 		var ball_pos = get_node("../Ball").position
 		var ball_size = get_node("../Ball").size

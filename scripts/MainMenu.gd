@@ -1,6 +1,7 @@
 extends Control
 
-var single_game := load("res://scenes/game.tscn")
+var single_game := preload("res://scenes/game.tscn")
+var multi_game := preload("res://scenes/multi_game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,7 @@ func _on_single_button_pressed():
 
 
 func _on_multi_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(multi_game)
 
 
 func _on_quit_button_pressed():
