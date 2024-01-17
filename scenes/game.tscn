@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce4bifuaddccv"]
+[gd_scene load_steps=5 format=3 uid="uid://ce4bifuaddccv"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_xvbgb"]
 [ext_resource type="PackedScene" uid="uid://dl1jr005hcf8i" path="res://scenes/paddle.tscn" id="2_7l8w4"]
 [ext_resource type="PackedScene" uid="uid://b3os6thr86xua" path="res://scenes/ball.tscn" id="3_aa1e0"]
-
-[sub_resource type="SystemFont" id="SystemFont_y5fnd"]
-
-[sub_resource type="Theme" id="Theme_hivp5"]
-default_font = SubResource("SystemFont_y5fnd")
+[ext_resource type="Theme" uid="uid://bprqryutk3og" path="res://resources/theme.tres" id="4_42vhd"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xvbgb")
@@ -33,34 +29,22 @@ offset_bottom = 70.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LeftScore" type="RichTextLabel" parent="Container/CenterContainer"]
+[node name="LeftScore" type="Label" parent="Container/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = SubResource("Theme_hivp5")
-theme_override_font_sizes/normal_font_size = 50
+theme = ExtResource("4_42vhd")
+theme_override_font_sizes/font_size = 50
 text = "0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
 
 [node name="CenterContainer2" type="CenterContainer" parent="Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RightScore" type="RichTextLabel" parent="Container/CenterContainer2"]
+[node name="RightScore" type="Label" parent="Container/CenterContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = SubResource("Theme_hivp5")
-theme_override_font_sizes/normal_font_size = 50
+theme = ExtResource("4_42vhd")
+theme_override_font_sizes/font_size = 50
 text = "0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
 
 [connection signal="side_hit" from="Ball" to="." method="_on_ball_side_hit"]
