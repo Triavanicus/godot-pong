@@ -1,8 +1,8 @@
 extends Control
 
-var single_game := preload("res://scenes/game.tscn")
-var multi_game := preload("res://scenes/multi_game.tscn")
-var has_focus = false
+var single_game := load("res://scenes/Game.tscn") as PackedScene
+var multi_game := load("res://scenes/MultiGame.tscn") as PackedScene
+var has_focus := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +25,7 @@ func _on_multi_button_pressed():
 func _on_quit_button_pressed():
 	get_tree().quit()
 
-func _input(event):
+func _input(event: InputEvent):
 	if event.is_released() && !has_focus: 
-		$VSplitContainer/VBoxContainer/SingleButton.grab_focus()
+		($VSplitContainer/VBoxContainer/SingleButton as Button).grab_focus()
 		has_focus = !has_focus

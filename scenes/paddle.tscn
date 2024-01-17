@@ -10,7 +10,7 @@ size = Vector2(10, 10)
 position = Vector2(25, 200)
 motion_mode = 1
 script = ExtResource("1_x3oad")
-size = Vector2i(10, 50)
+size = Vector2(10, 50)
 is_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

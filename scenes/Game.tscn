@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce4bifuaddccv"]
+[gd_scene load_steps=5 format=3 uid="uid://b6qtae5grfmfl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_xvbgb"]
 [ext_resource type="PackedScene" uid="uid://dl1jr005hcf8i" path="res://scenes/paddle.tscn" id="2_7l8w4"]
-[ext_resource type="PackedScene" uid="uid://b3os6thr86xua" path="res://scenes/ball.tscn" id="3_aa1e0"]
+[ext_resource type="PackedScene" uid="uid://ddiq8s30holqg" path="res://scenes/Ball.tscn" id="3_aa1e0"]
 [ext_resource type="Theme" uid="uid://bprqryutk3og" path="res://resources/theme.tres" id="4_42vhd"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("left_score", "right_score")]

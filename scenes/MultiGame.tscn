@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c87gbch0h5j2b"]
+
+[ext_resource type="PackedScene" uid="uid://b6qtae5grfmfl" path="res://scenes/Game.tscn" id="1_1gs7a"]
+
+[node name="Node2D" instance=ExtResource("1_1gs7a")]
+
+[node name="Paddle2" parent="." index="1"]
+is_player = true

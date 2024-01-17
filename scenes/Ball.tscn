@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3os6thr86xua"]
+[gd_scene load_steps=6 format=3 uid="uid://ddiq8s30holqg"]
 
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="1_v3e1h"]
 [ext_resource type="AudioStream" uid="uid://t71ixgvg37mi" path="res://resources/ping.wav" id="2_amgmx"]
@@ -14,7 +14,7 @@ shader = ExtResource("2_jlaan")
 position = Vector2(495, 200)
 script = ExtResource("1_v3e1h")
 movement_speed = 300
-size = Vector2i(10, 10)
+size = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 5)

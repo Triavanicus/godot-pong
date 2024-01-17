@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://boyub34871dj"]
-
-[ext_resource type="PackedScene" uid="uid://ce4bifuaddccv" path="res://scenes/game.tscn" id="1_ixcpb"]
-
-[node name="Node2D" instance=ExtResource("1_ixcpb")]
-
-[node name="Paddle2" parent="." index="1"]
-is_player = true
