@@ -75,9 +75,10 @@ func _physics_process(delta: float):
 	if collision:
 		play_sound()
 		var additional: Vector2
-		if collision.get_collider().is_class("Paddle"):
+		if collision.get_collider() is Paddle:
 			var paddle := collision.get_collider() as Paddle
 			var vec: = paddle.get_vector().normalized()
+			paddle.emit_particles(global_position.y)
 			movement_speed *= 1.05
 			if vec.y == 0:
 				if movement_vec.x > 0:

@@ -6,6 +6,11 @@ class_name Paddle
 var collision := $CollisionShape2D as CollisionShape2D
 
 @onready
+var particles := $GPUParticles2D as GPUParticles2D
+
+@onready var particle_timer = $ParticleTimer as Timer
+
+@onready
 var rect := $ColorRect as ColorRect
 
 @export_range(100, 1000)
@@ -38,6 +43,13 @@ func resize_rect():
 	collision.position = Vector2(size.x / 2, size.y / 2)
 
 
+func emit_particles(world_y: float) -> void:
+	particle_timer.start()
+	particles.emitting = true
+	particles.global_position.y = world_y
+	
+
+
 func get_vector() -> Vector2:
 	return vector
 
@@ -53,6 +65,10 @@ func _ready():
 	resize_rect()
 	
 	position.y = viewport.position.y + viewport.size.y / 2 - size.y / 2
+	
+	if player == Player.RIGHT:
+		var material := particles.process_material as ParticleProcessMaterial
+		material.direction.x *= -1
 
 
 func _physics_process(delta: float):
@@ -85,3 +101,7 @@ func _physics_process(delta: float):
 	
 	var viewport_size = get_viewport_rect().size
 	position = position.clamp(min_position, max_position)
+
+
+func _on_particle_timer_timeout():
+	particles.emitting = false

@@ -11,10 +11,11 @@ left_score = NodePath("CenterContainer/Container/CenterContainer/LeftScore")
 right_score = NodePath("CenterContainer/Container/CenterContainer2/RightScore")
 
 [node name="Paddle" parent="." instance=ExtResource("2_7l8w4")]
+position = Vector2(25, 300)
+is_player = true
 
 [node name="Paddle2" parent="." instance=ExtResource("2_7l8w4")]
 position = Vector2(965, 200)
-is_player = false
 player = 1
 
 [node name="Ball" parent="." instance=ExtResource("3_aa1e0")]
