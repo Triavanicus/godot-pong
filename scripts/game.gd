@@ -6,10 +6,10 @@ var main_menu: PackedScene = load("res://scenes/MainMenu.tscn")
 var left_wins = 0
 var right_wins = 0
 
-@onready
-var left_score := $Container/CenterContainer/LeftScore
-@onready
-var right_score := $Container/CenterContainer2/RightScore
+@export
+var left_score: Label
+@export
+var right_score: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

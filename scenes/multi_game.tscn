@@ -5,5 +5,4 @@
 [node name="Node2D" instance=ExtResource("1_ixcpb")]
 
 [node name="Paddle2" parent="." index="1"]
-movement_speed = 500
 is_player = true
