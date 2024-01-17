@@ -69,14 +69,18 @@ func _physics_process(delta):
 				vector.y -= movement_speed
 			if Input.is_action_pressed("right_move_down"):
 				vector.y += movement_speed
+		move_and_collide(vector * delta)
 	if !is_player:
-		var ball_pos = get_node("../Ball").position
-		var ball_size = get_node("../Ball").size
-		if ball_pos.y + ball_size.y / 2 < position.y + size.y / 2 - movement_speed * delta:
-			vector.y -= movement_speed
-		if ball_pos.y + ball_size.y / 2 > position.y + size.y / 2 + movement_speed * delta:
-			vector.y += movement_speed
-	move_and_collide(vector * delta)
+		var ball = get_node("../Ball")
+		var ball_pos: Vector2 = ball.position + (ball.size as Vector2 / 2)
+		var pos: Vector2 = position + (size as Vector2 / 2)
+		
+		var move_delta = movement_speed * delta
+		if ball_pos.y < pos.y:
+			vector.y = -min((pos.y - ball_pos.y), move_delta)
+		if ball_pos.y > pos.y:
+			vector.y = min((ball_pos.y - pos.y), move_delta)
+		move_and_collide(vector)
 	
 	var viewport_size = get_viewport_rect().size
 	position = position.clamp(min_position, max_position)
